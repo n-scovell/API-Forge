@@ -188,10 +188,6 @@ const buildApi = async () => {
     createFile(projectPath, "src/_cors.js", corsContent)
     runCommand("code prisma/schema.prisma", projectPath);
     await pause("Edit prisma/schema.prisma now (and your models)")
-
-    console.log("PROJECT PATH:", projectPath);
-    console.log("CURRENT WORKING DIRECTORY:", process.cwd());
-
     runCommand('npx prisma migrate dev --name init', projectPath)
 }
 if (args.arg2 === 'api') {
