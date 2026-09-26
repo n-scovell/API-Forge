@@ -63,14 +63,6 @@ datasource db {
   allowedHeaders: ["Content-Type", "Authorization"],
   });`
 
-const gitignoreContent = `
-    node_modules
-    .env
-    .env.local
-    .env.*.local
-    /src/generated/prisma
-`;
-
 // GLOBALS
 const makeFolder = async (fold, name) => {
   fs.mkdirSync(fold)
@@ -188,6 +180,7 @@ const buildApi = async () => {
     createFile(projectPath, "src/_cors.js", corsContent)
     runCommand("code prisma/schema.prisma", projectPath);
     await pause("Edit prisma/schema.prisma now (and your models)")
+    console.log('PROJECT PATH: ', projectPath)
     runCommand('npx prisma migrate dev --name init', projectPath)
 }
 if (args.arg2 === 'api') {
